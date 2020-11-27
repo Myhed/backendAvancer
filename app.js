@@ -1,31 +1,22 @@
 import express from 'express';
 import {attachedBddToRequestMiddleware,setHeaderMiddleware} from './middleware/default.middleware.js'
-import {getAllDocteurs} from './middleware/docteur.middleware.js';
+import { routerDocteur } from './router/index.js';
 const app = express();
 
-
+// Default Middleware
+app.use(express.urlencoded({extended: true}));
 app.use(setHeaderMiddleware);
 app.use(attachedBddToRequestMiddleware);
-app.use('/docteurs', getAllDocteurs);
 
-app.use(express.urlencoded({extended: true}));
+// Routeur docteur
+app.use('/docteurs', routerDocteur);
+
+// Routeur infirmier @Todo
 
 app.get('/', function(req,res){
     res.status(301).redirect('/docteurs');
 });
 
-app.get('/infirmiers', function(req, res) {
-    res.send('data infirmier');
-});
-
-app.get('/docteurs', async function(req,res){
-    console.log(req.bdd);
-    res.send();
-});
-
-app.get('/services', function(req,res){
-    res.send('data services');
-});
 
 app.get('*', function(req,res)  {
     res.status(404).send('NOT FOUND');

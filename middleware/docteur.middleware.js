@@ -1,10 +1,12 @@
 async function getAllDocteurs(req,res,next){
+    let rows;
     try {
-        const [rows, fields] = await req.bdd.query("SELECT * FROM docteurs");
+        [rows] = await req.bdd.query("SELECT * FROM docteur");
     }catch(e){
         e.code = 503;
         next(e);
     }
+    req.rows = rows;
     next();
 }
 
