@@ -14,7 +14,8 @@
   },
   "scripts": {
     "test": "mocha test/*.test.js",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "integrate:stored_procedure:docteur": "Get-Content ./mysql_script/docteur/procedure/stored_procedure.sql | mariadb -u root -p"
   },
   "type": "module",
   "keywords": [],

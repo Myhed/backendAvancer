@@ -2,8 +2,7 @@ import { createConnection, createPool } from 'mysql2';
 
 const connection = createPool({
     host: 'localhost',
-    user: 'tata',
-    password: 'titi',
+    user: 'root',
     database: 'hospital',
     port: 3306
  }).promise();
